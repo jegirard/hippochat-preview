@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hippochat.health/sitemap-index.xml
