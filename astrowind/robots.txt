@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://hippochat.health/sitemap-index.xml
+Sitemap: https://hippochat.health/astrowind/sitemap-index.xml
