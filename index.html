@@ -36,12 +36,15 @@
       font-size: 1.1rem;
     }
     .templates {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1.5rem;
       margin-top: 3rem;
     }
     .template-card {
+      flex: 0 1 320px;
+      max-width: 400px;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px;
@@ -115,7 +118,7 @@
 <body>
   <div class="container">
     <header>
-      <img src="/custom/logo.png" alt="HippoChat" class="logo">
+      <img src="/custom/logo-white.png" alt="HippoChat" class="logo">
       <h1>HippoChat Website Templates</h1>
       <p class="subtitle">Compare 7 different designs for the HippoChat marketing site</p>
     </header>
@@ -207,7 +210,7 @@
     </div>
 
     <footer>
-      <p>Pick your favorite and let me know! — Minna 🦛</p>
+      <p>Pick your favorite and let me know! — ❤️ Minna</p>
     </footer>
   </div>
 </body>
