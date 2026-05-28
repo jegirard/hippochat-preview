@@ -8,6 +8,12 @@ import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Image from '~/components/common/Image.astro';
+
+import demoMessagingThumb from '~/assets/images/demo-messaging-thumbnail.png';
+import demoAdminThumb from '~/assets/images/demo-admin-thumbnail.png';
 
 const metadata = {
   title: 'Product',
@@ -123,6 +129,9 @@ const metadata = {
     tagline="Replaces"
     title='What <span class="text-accent dark:text-white">HippoChat</span> Replaces'
     columns={2}
+    classes={{
+      container: '[&>div:last-child]:sm:col-span-2 [&>div:last-child]:sm:mx-auto [&>div:last-child]:sm:w-[calc(50%-1.5rem)]',
+    }}
     items={[
       {
         title: 'SMS and personal phones',
@@ -156,6 +165,96 @@ const metadata = {
     </Fragment>
   </Features2>
 
+  <!-- Video Demos -->
+  <WidgetWrapper id="demos">
+    <Headline
+      tagline="Demos"
+      title='See <span class="text-accent dark:text-white">HippoChat</span> in Action'
+      subtitle="Walk through the messaging experience your clinical teams use every day, and the admin console your IT and compliance teams use to manage it."
+    />
+    <div class="grid gap-8 lg:grid-cols-2">
+      <div>
+        <div class="yt-lite-wrapper relative overflow-hidden rounded-lg shadow-lg ring-1 ring-slate-200 dark:ring-slate-700" style="aspect-ratio: 16 / 9;">
+          <button
+            type="button"
+            class="yt-lite group absolute inset-0 block h-full w-full cursor-pointer overflow-hidden border-0 bg-transparent p-0"
+            data-yt-id="n3-fCfBq_rY"
+            data-yt-title="HippoChat messaging demo"
+            aria-label="Play HippoChat messaging demo"
+          >
+            <Image
+              src={demoMessagingThumb}
+              alt="HippoChat messaging demo thumbnail"
+              width={1280}
+              height={720}
+              widths={[640, 960, 1280]}
+              sizes="(min-width: 1024px) 600px, 100vw"
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
+            <span class="absolute inset-0 flex items-center justify-center">
+              <span class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white opacity-25 shadow-[0_6px_20px_rgba(0,0,0,0.35)] ring-4 ring-white transition-all duration-200 group-hover:scale-110 group-hover:bg-secondary group-hover:opacity-100">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 translate-x-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </span>
+          </button>
+        </div>
+        <h3 class="mt-4 text-lg font-bold text-heading">Messaging Demo</h3>
+        <p class="mt-1 text-muted">How clinicians and external partners send secure messages in any browser—no app required—so PHI moves through an audited, compliant channel instead of risky SMS or personal phones.</p>
+      </div>
+      <div>
+        <div class="yt-lite-wrapper relative overflow-hidden rounded-lg shadow-lg ring-1 ring-slate-200 dark:ring-slate-700" style="aspect-ratio: 16 / 9;">
+          <button
+            type="button"
+            class="yt-lite group absolute inset-0 block h-full w-full cursor-pointer overflow-hidden border-0 bg-transparent p-0"
+            data-yt-id="WQxpJdHVXog"
+            data-yt-title="HippoChat admin demo"
+            aria-label="Play HippoChat admin demo"
+          >
+            <Image
+              src={demoAdminThumb}
+              alt="HippoChat admin demo thumbnail"
+              width={1280}
+              height={720}
+              widths={[640, 960, 1280]}
+              sizes="(min-width: 1024px) 600px, 100vw"
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
+            <span class="absolute inset-0 flex items-center justify-center">
+              <span class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white opacity-25 shadow-[0_6px_20px_rgba(0,0,0,0.35)] ring-4 ring-white transition-all duration-200 group-hover:scale-110 group-hover:bg-secondary group-hover:opacity-100">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 translate-x-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </span>
+          </button>
+        </div>
+        <h3 class="mt-4 text-lg font-bold text-heading">Admin Demo</h3>
+        <p class="mt-1 text-muted">How admins manage users, permissions, retention, and audit trails across organizations—and keep an eye on message queues so critical communications don't get lost.</p>
+      </div>
+    </div>
+  </WidgetWrapper>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('button.yt-lite').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.ytId;
+        if (!id) return;
+        const title = btn.dataset.ytTitle ?? 'YouTube video';
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+        iframe.title = title;
+        iframe.setAttribute(
+          'allow',
+          'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+        );
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        iframe.className = 'absolute inset-0 h-full w-full border-0';
+        btn.replaceWith(iframe);
+      });
+    });
+  </script>
+
   <!-- CTA -->
   <CallToAction
     actions={[
@@ -166,7 +265,7 @@ const metadata = {
       },
     ]}
   >
-    <Fragment slot="title">See <span class="text-accent dark:text-white">HippoChat</span> in Action</Fragment>
+    <Fragment slot="title">Ready to See It Live?</Fragment>
     <Fragment slot="subtitle">
       Learn how <span class="text-accent dark:text-white">HippoChat</span> can solve your cross-organizational communication challenges.
     </Fragment>
